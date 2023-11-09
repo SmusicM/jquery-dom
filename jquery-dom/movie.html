@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div>
+            <p>Movie title</p>
+            <input type="text" placeholder="Movie name">
+        </div>
+        <div>
+            <p>Movie rating</p>
+            <input type="text" placeholder="Movie rating">
+        </div>
+        <button>Submit</button>
+    </form>
+    <ol></ol>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+       
+    <script>
+    //$(document).ready(function(){
+    //    $("form").submit(function(e){
+    //   e.preventDefault();
+    //  //const inputVal = $("input").val();
+    //  //$("ol").append("li" + inputVal + "</li>");
+    //  //$("ol").append($("<li>" + $("Input").val() + "</li>"));
+    //  $("ol").append($("<li><li>").text($("input").val()));
+    //})
+    //  })
+
+$(document).ready(function(){
+    $("form").submit(function(e){
+        e.preventDefault();
+        const movienameVal = $("input").eq(0).val();
+        if(movienameVal.length <2 ){
+           $("input").eq(0).val("");
+           return alert("YOU NEED AT LEAST 2 CHARACTERS");
+        }
+        const movieRatingNum = $("input").eq(1).val();
+        if(isNaN(movieRatingNum) ||  (movieRatingNum < 1 || movieRatingNum > 10 )){
+            $("input").eq(1).val("");
+            return alert("Rating must be from numbers 1-10");
+        }
+        const movieRating = $("<div></div>").html( "<br>" + "Movie Title: " + movienameVal + "<br>Movie Rating: " + movieRatingNum + "<br>");
+        const deleteBtn = $("<button> Delete </button>").click(function(){
+            movieRating.remove();
+        });
+         movieRating.append(deleteBtn);
+        $("body").append(movieRating);
+    })
+})
+
+
+//$(document).ready(function(){
+//    $("form").submit(function(e){
+//        e.preventDefault();
+//        const movienameVal = $("input").eq(0).val();
+//        const movieRatingNum = $("input").eq(1).val();
+//        if(movieRatingNum < 1 || movieRatingNum > 10){
+//            $("input").eq(1).val("");
+//        }
+//        const movieRating = (("<div>")+ "Movie title:" + " " + movienameVal + ("<br>")+ " " + "Rating:" + movieRatingNum + ("<br>") +("</div>"));
+//        const deleteBtn = $("<button> Delete </button>").click(function(){
+//            movieRating.remove();
+//        });
+//         movieRating.append(deleteBtn);
+//        $("body").append(movieRating);
+//    })
+//})
+
+
+    </script>
+</body>
+</html>
